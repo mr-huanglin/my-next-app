@@ -1,12 +1,14 @@
-
+/*
+ * @Author: mr-huanglin
+ * @LastEditTime: 2024-07-16 15:18:32
+ */
+'use server'
 import mongoose from 'mongoose'
 
 const MONGODB_URI = process.env.MONGODB_URI
 
 if (!MONGODB_URI) {
-  throw new Error(
-    '请填写服务器地址'
-  )
+  throw new Error('请填写服务器地址')
 }
 let cached = global.mongoose
 
