@@ -1,0 +1,43 @@
+.main {
+    margin         : 0;
+    font-family    : 'Arial', sans-serif;
+    background     : url('https://cn-beijing-data.aliyundrive.net/aG4hPuKf%2F25163380%2F624514bf65f82daabc6e4c6e95e2cd6689cef930%2F624514bf4a7fa83064d845d89e55470d280d42bd?security-token=CAISvgJ1q6Ft5B2yfSjIr5DbItOAv%2BtE4PGMdFXhvkgyZcxbnZKfoDz2IHhMf3NpBOkZvvQ1lGlU6%2Fcalq5rR4QAXlDfNTr%2FIDi1q1HPWZHInuDox55m4cTXNAr%2BIhr%2F29CoEIedZdjBe%2FCrRknZnytou9XTfimjWFrXWv%2Fgy%2BQQDLItUxK%2FcCBNCfpPOwJms7V6D3bKMuu3OROY6Qi5TmgQ41Uh1jgjtPzkkpfFtkGF1GeXkLFF%2B97DRbG%2FdNRpMZtFVNO44fd7bKKp0lQLs0ARrv4r1fMUqW2X543AUgFLhy2KKMPY99xpFgh9a7j0iCbSGyUu%2FhcRm5sw9%2Byfo34lVYneozVObLNfObP7AhWvDNQ3S7jN6YihvSt3zmA4YsrdqJPW1dKDogPIx4aBwHbHMFKlwddMkwuiB5R8GvXtuMkagAF4PzhvTdgN7cEQaP2pfav0vCCpKrqFEzhfYwSdWw8Jc7fiIQshzITEmrxCJLoWTnRGTiLLHxwVLQnjxpLs2f9BsY%2BmP1nzC5JXd5UovzZe6saaaSQ5iMh1ikkqRghDtIcZgpqgpEncuo%2Bc%2FtmY79CNEzjltw6zJlYQTDXaDyln4SAA&x-oss-access-key-id=STS.NSnii4R4eW3gvsPZHgiCwrW4B&x-oss-expires=1720692864&x-oss-process=image%2Fresize%2Cw_2048%2Fformat%2Cjpeg&x-oss-signature=CIk3nzqh8w7QY%2BxYMSTEtzSg0nrorGIJsA%2BQ31q%2Fq%2BM%3D&x-oss-signature-version=OSS2') no-repeat center center fixed;
+    background-size: cover;
+    /* 设置背景颜色为黑色 */
+    height         : 100vh;
+    width          : 100vw;
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+    overflow       : hidden;
+    /* 防止滚动条出现 */
+}
+
+.login-container {
+    background-color: rgba(255, 255, 255, 0.5);
+    /* 使用半透明的白色背景 */
+    padding         : 20px;
+    border-radius   : 8px;
+    box-shadow      : 0 0 10px rgba(0, 0, 0, 0.3);
+    width           : 300px;
+    text-align      : center;
+    margin-left     : 50%;
+}
+
+.login-container h2 {
+    color: #333;
+}
+
+.login-form {
+    margin-top: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display      : block;
+    margin-bottom: 8px;
+    color        : #555;
+}
