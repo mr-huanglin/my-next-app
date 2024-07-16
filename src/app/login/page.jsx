@@ -1,14 +1,13 @@
 /*
  * @Author: huanglin
- * @LastEditTime: 2024-07-16 14:18:29
+ * @LastEditTime: 2024-07-16 23:53:57
  */
 'use client'
 import { useState, useEffect } from 'react'
 import './index.scss'
-import { Input } from '@nextui-org/input'
-import { Button } from '@nextui-org/button'
 import { Card, CardFooter, Image } from '@nextui-org/react'
 import { useRouter } from 'next/navigation'
+import { Button } from 'antd'
 
 // 动态引入 static/image 文件夹下的所有图片
 const importAll = (r) => r.keys().map(r)
@@ -26,7 +25,6 @@ export default function LoginPage() {
   }, [])
 
   const handleLogin = () => {
-    console.log('login')
     router.push('/home')
   }
   return (
@@ -42,28 +40,31 @@ export default function LoginPage() {
         <form className='login-form'>
           <div className='form-group'>
             <label htmlFor='username'>Username:</label>
-            <Input
+
+            <input
               type='text'
               id='username'
-              name='username'
+              placeholder='请输入账号'
               autoComplete='username'
+              className='input input-bordered w-full max-w-xs'
             />
           </div>
 
           <div className='form-group'>
             <label htmlFor='password'>Password:</label>
-            <Input
+
+            <input
               type='password'
               id='password'
-              name='password'
-              required
+              placeholder='请输入密码'
               autoComplete='current-password'
+              className='input input-bordered w-full max-w-xs'
             />
           </div>
 
           <div className='flex justify-center'>
-            <Button color='primary' onClick={handleLogin}>
-              登录666
+            <Button type='primary' onClick={handleLogin}>
+              登录
             </Button>
           </div>
         </form>

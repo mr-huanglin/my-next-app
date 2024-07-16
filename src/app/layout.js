@@ -1,12 +1,12 @@
 /*
  * @Author: huanglin
- * @LastEditTime: 2024-07-12 17:59:28
+ * @LastEditTime: 2024-07-16 23:55:58
  */
 'use client'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import { NextUIProvider } from '@nextui-org/react'
 import DefaultLayout from '@/layouts/default-layout'
+import { AntdRegistry } from '@ant-design/nextjs-registry'
 import { usePathname } from 'next/navigation'
 import BaseHead from './head'
 import '@/style/index.scss'
@@ -20,9 +20,9 @@ export default function RootLayout({ children }) {
     <html lang='zh-cn'>
       <BaseHead />
       <body className={inter.className}>
-        <NextUIProvider>
+        <AntdRegistry>
           {isLoginPage ? children : <DefaultLayout>{children}</DefaultLayout>}
-        </NextUIProvider>
+        </AntdRegistry>
       </body>
     </html>
   )
