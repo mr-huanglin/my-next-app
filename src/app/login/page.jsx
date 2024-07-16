@@ -1,6 +1,6 @@
 /*
  * @Author: huanglin
- * @LastEditTime: 2024-07-12 17:10:48
+ * @LastEditTime: 2024-07-16 14:18:29
  */
 'use client'
 import { useState, useEffect } from 'react'
@@ -63,7 +63,7 @@ export default function LoginPage() {
 
           <div className='flex justify-center'>
             <Button color='primary' onClick={handleLogin}>
-              登录
+              登录666
             </Button>
           </div>
         </form>
