@@ -1,21 +1,18 @@
 /*
  * @Author: mr-huanglin
- * @LastEditTime: 2024-07-17 11:58:34
+ * @LastEditTime: 2024-07-17 14:16:03
  */
-import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined
-} from '@ant-design/icons'
+
 import { Layout, Menu } from 'antd'
-const { Sider } = Layout
 import { useAppStore } from '@/store'
 import { useSnapshot } from 'valtio'
-import { useRouter } from 'next/navigation'
+import { useCustomRouter } from '@/hooks'
+
+const { Sider } = Layout
+
 const DefaultAside = () => {
   const { collapsed, routes, defaultSelectedKeys } = useSnapshot(useAppStore)
+  const { useRouter } = useCustomRouter()
   const router = useRouter()
 
   const clickMenu = (e) => {

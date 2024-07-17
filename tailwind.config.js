@@ -3,7 +3,6 @@
  * @LastEditTime: 2024-07-17 09:38:25
  */
 /** @type {import('tailwindcss').Config} */
-// const { nextui } = require('@nextui-org/react')
 
 module.exports = {
   content: [
@@ -15,11 +14,6 @@ module.exports = {
   ],
   theme: {
     extend: {
-      // backgroundImage: {
-      //   'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-      //   'gradient-conic':
-      //     'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))'
-      // },
       borderRadius: {
         large: '12px',
         medium: '8px',

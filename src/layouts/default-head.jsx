@@ -3,15 +3,6 @@
  * @LastEditTime: 2024-07-17 10:57:33
  */
 'use client'
-import React from 'react'
-import {
-  Navbar,
-  NavbarBrand,
-  NavbarContent,
-  NavbarItem,
-  Link,
-  Button
-} from '@nextui-org/react'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
