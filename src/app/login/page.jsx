@@ -1,6 +1,6 @@
 /*
  * @Author: huanglin
- * @LastEditTime: 2024-07-17 14:41:54
+ * @LastEditTime: 2024-07-17 14:49:16
  */
 'use client'
 import { useState, useEffect } from 'react'
@@ -32,7 +32,7 @@ export default function LoginPage() {
       className='main relative transition-all duration-1000'
       style={{ backgroundImage: `url(${images[currentImage].default.src})` }}
     >
-      <div className='card  shadow-xl bg-background/70 dark:bg-default-100/50 max-w-[610px] absolute right-[200px] w-96'>
+      <div className='card  shadow-xl bg-background/80 dark:bg-default-100/50 max-w-[610px] absolute right-[200px] w-96'>
         <div className='card-body'>
           <h2 className='card-title'>Welcome To My Page</h2>
           <form className='login-form'>
