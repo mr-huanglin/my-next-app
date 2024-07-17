@@ -1,9 +1,9 @@
 /*
  * @Author: huanglin
- * @LastEditTime: 2024-07-16 23:47:07
+ * @LastEditTime: 2024-07-17 09:38:25
  */
 /** @type {import('tailwindcss').Config} */
-const { nextui } = require('@nextui-org/react')
+// const { nextui } = require('@nextui-org/react')
 
 module.exports = {
   content: [
@@ -15,15 +15,18 @@ module.exports = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))'
-      },
+      // backgroundImage: {
+      //   'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+      //   'gradient-conic':
+      //     'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))'
+      // },
       borderRadius: {
         large: '12px',
         medium: '8px',
         small: '4px'
+      },
+      fontSize: {
+        small: '0.875rem' // 14px
       }
     }
   },

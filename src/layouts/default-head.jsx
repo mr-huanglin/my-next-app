@@ -1,6 +1,6 @@
 /*
  * @Author: mr-huanglin
- * @LastEditTime: 2024-07-16 23:20:25
+ * @LastEditTime: 2024-07-17 10:57:33
  */
 'use client'
 import React from 'react'
@@ -15,22 +15,20 @@ import {
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
+import { useAppStore } from '@/store'
+import { useSnapshot } from 'valtio'
+
 export default function LayoutHead() {
-  // const state = useState({
-  //    current: 1
-  // });
+  const { collapsed, setCollapsed } = useSnapshot(useAppStore)
+
   const [currentActive, setCurrentActive] = useState(1)
   const router = useRouter()
-  const toLogin = () => {
-    setCurrentActive(2)
-    setTimeout(() => {
-      console.log(currentActive)
-    }, 1000)
-    // router.push('/login')
+  const onClick = () => {
+    setCollapsed(!collapsed)
   }
   return (
     <div className='navbar bg-base-100'>
-      <div className='flex-1'>
+      <div className='flex-1' onClick={onClick}>
         <a className='btn btn-ghost text-xl'>daisyUI</a>
       </div>
       <div className='flex-none gap-2'>
