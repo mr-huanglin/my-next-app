@@ -1,11 +1,16 @@
 /*
+ * @Author: mr-huang
+ * @LastEditTime: 2024-07-25 10:53:05
+ */
+/*
  * @Author: huanglin
- * @LastEditTime: 2024-07-17 11:48:44
+ * @LastEditTime: 2024-07-25 10:49:50
  */
 'use client'
+
 import { Inter } from 'next/font/google'
 import './globals.css'
-import DefaultLayout from '@/layouts/default-layout.jsx'
+import DefaultLayout from '@/layouts/layout.js'
 import { AntdRegistry } from '@ant-design/nextjs-registry'
 import { usePathname } from 'next/navigation'
 import BaseHead from './head'

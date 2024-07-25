@@ -1,6 +1,6 @@
 /*
  * @Author: mr-huanglin
- * @LastEditTime: 2024-07-17 11:57:50
+ * @LastEditTime: 2024-07-25 11:33:06
  */
 import { proxy } from 'valtio'
 import {
@@ -11,7 +11,9 @@ import {
   VideoCameraOutlined
 } from '@ant-design/icons'
 
-export const useAppStore = proxy({
+const isClient = typeof window !== 'undefined'
+
+export const appStore = proxy({
   collapsed: false,
   routes: [
     {
@@ -30,14 +32,14 @@ export const useAppStore = proxy({
       label: 'nav 3'
     }
   ],
-  defaultSelectedKeys: '',
+  defaultSelectedKeys: '/home',
   setCollapsed: (collapsed) => {
-    useAppStore.collapsed = collapsed
+    appStore.collapsed = collapsed
   },
   setRoutes: (routes) => {
-    useAppStore.routes = routes
+    appStore.routes = routes
   },
   setDefaultSelectedKeys: (defaultSelectedKeys) => {
-    useAppStore.defaultSelectedKeys = defaultSelectedKeys
+    appStore.defaultSelectedKeys = defaultSelectedKeys
   }
 })

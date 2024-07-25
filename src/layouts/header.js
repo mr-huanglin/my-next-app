@@ -1,21 +1,21 @@
-/*
- * @Author: mr-huanglin
- * @LastEditTime: 2024-07-17 10:57:33
- */
-'use client'
-import { useRouter } from 'next/navigation'
+// 'use client'
 import { useState } from 'react'
 
-import { useAppStore } from '@/store'
+import { appStore } from '@/store'
 import { useSnapshot } from 'valtio'
-
-export default function LayoutHead() {
-  const { collapsed, setCollapsed } = useSnapshot(useAppStore)
+import { useCustomRouter } from '@/hooks'
+const Header = () => {
+  const { collapsed, setCollapsed } = useSnapshot(appStore)
 
   const [currentActive, setCurrentActive] = useState(1)
+  const { useRouter } = useCustomRouter()
   const router = useRouter()
   const onClick = () => {
     setCollapsed(!collapsed)
+  }
+
+  const handleLogOut = () => {
+    router.push('/login')
   }
   return (
     <div className='navbar bg-base-100'>
@@ -56,7 +56,7 @@ export default function LayoutHead() {
             <li>
               <a>Settings</a>
             </li>
-            <li>
+            <li onClick={handleLogOut}>
               <a>Logout</a>
             </li>
           </ul>
@@ -65,3 +65,4 @@ export default function LayoutHead() {
     </div>
   )
 }
+export default Header

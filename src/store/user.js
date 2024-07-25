@@ -1,6 +1,6 @@
 /*
  * @Author: mr-huanglin
- * @LastEditTime: 2024-07-17 14:33:28
+ * @LastEditTime: 2024-07-25 11:19:06
  */
 
 import { proxy } from 'valtio'
@@ -17,6 +17,5 @@ export const userStore = proxy({
 })
 
 subscribeKey(userStore, 'token', (value) => {
-  console.log('TCL: value', value)
   localStorage.setItem('token', userStore.token)
 })
