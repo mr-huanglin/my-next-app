@@ -1,12 +1,12 @@
 /*
  * @Author: huanglin
- * @LastEditTime: 2024-07-17 14:49:16
+ * @LastEditTime: 2024-07-25 15:57:56
  */
 'use client'
 import { useState, useEffect } from 'react'
 import './index.scss'
 import { Button } from 'antd'
-import { useCustomRouter } from '@/hooks'
+import { useCustomRouter, useHttp } from '@/hooks'
 
 // 动态引入 static/image 文件夹下的所有图片
 const importAll = (r) => r.keys().map(r)
@@ -24,8 +24,13 @@ export default function LoginPage() {
     return () => clearInterval(interval)
   }, [])
 
-  const handleLogin = () => {
-    router.push('/home')
+  const handleLogin = async () => {
+    const params = {
+      loginName: '187781513401',
+      loginPwd: '123456'
+    }
+    const res = await useHttp('/restApi/member/auth/login', params)
+    console.log('TCL: handleLogin -> res', res)
   }
   return (
     <div
