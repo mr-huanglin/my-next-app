@@ -1,6 +1,6 @@
 /*
  * @Date: 2024-07-26 11:39:14
- * @LastEditTime: 2024-07-26 18:01:10
+ * @LastEditTime: 2024-07-26 18:28:15
  */
 
 'use client'
@@ -8,6 +8,7 @@ import ComSearch from '@/components/com-search'
 import ComTable from '@/components/com-table'
 import { useHttp } from '@/hooks'
 import { useCallback, useEffect } from 'react'
+import { Button } from 'antd'
 
 const DocumentWorkOrderManagement = () => {
   const searchColumns = [
@@ -77,6 +78,14 @@ const DocumentWorkOrderManagement = () => {
       title: '群聊名称',
       dataIndex: 'groupName',
       key: 'groupName'
+    },
+    {
+      title: '操作',
+      dataIndex: 'operation',
+      key: 'operation',
+      render: (text, record) => {
+        return <Button type='primary'>详情</Button>
+      }
     }
   ]
   const onsubmit = useCallback((params) => {

@@ -1,6 +1,6 @@
 /*
  * @Date: 2024-07-26 14:25:32
- * @LastEditTime: 2024-07-26 15:13:16
+ * @LastEditTime: 2024-07-26 18:35:58
  */
 
 import { Layout, Menu } from 'antd'
@@ -10,14 +10,25 @@ import { useRouter } from 'next/navigation'
 const { Sider } = Layout
 
 const Aside = () => {
-  const { collapsed, routes, defaultSelectedKeys, setDefaultSelectedKeys } =
-    useSnapshot(appStore)
+  const {
+    collapsed,
+    routes,
+    defaultSelectedKeys,
+    setDefaultSelectedKeys,
+    defaultOpenKeys,
+    setDefaultOpenKeys
+  } = useSnapshot(appStore)
+
+  console.log('TCL: Aside -> defaultOpenKeys', defaultOpenKeys)
 
   const router = useRouter()
 
   const clickMenu = (e) => {
     setDefaultSelectedKeys([e.key])
     router.push(e.key)
+  }
+  const onOpenChange = (keys) => {
+    setDefaultOpenKeys(keys)
   }
 
   return (
@@ -32,9 +43,11 @@ const Aside = () => {
       <Menu
         theme='light'
         mode='inline'
-        defaultSelectedKeys={defaultSelectedKeys ?? ['/home']}
+        defaultSelectedKeys={defaultSelectedKeys}
+        defaultOpenKeys={defaultOpenKeys}
         items={routes}
         onClick={clickMenu}
+        onOpenChange={onOpenChange}
       />
     </Sider>
   )

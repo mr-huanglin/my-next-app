@@ -1,6 +1,6 @@
 /*
  * @Author: mr-huang
- * @LastEditTime: 2024-07-26 14:40:57
+ * @LastEditTime: 2024-07-26 18:17:18
  */
 'use client'
 
@@ -38,8 +38,10 @@ const ContentLayout = ({ children }) => {
         margin: '24px 16px',
         padding: 24,
         minHeight: 280,
+        overflowY: 'auto',
         background: colorBgContainer,
-        borderRadius: borderRadiusLG
+        borderRadius: borderRadiusLG,
+        boxSizing: 'border-box'
       }}
     >
       {children}

@@ -1,6 +1,6 @@
 /*
  * @Date: 2024-07-25 10:50:53
- * @LastEditTime: 2024-07-26 15:08:44
+ * @LastEditTime: 2024-07-26 18:16:01
  */
 
 'use client'
@@ -32,7 +32,7 @@ const DefaultLayout = ({ children }) => {
   }, [getUserInfo])
 
   return (
-    <Layout className='w-[100vw] h-[100vh]'>
+    <Layout className='w-[100vw] h-[100vh] overflow-hidden'>
       <DefaultAside />
       <Layout>
         <DefaultHeader />

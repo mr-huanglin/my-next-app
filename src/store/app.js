@@ -1,6 +1,6 @@
 /*
  * @Author: mr-huanglin
- * @LastEditTime: 2024-07-26 12:52:18
+ * @LastEditTime: 2024-07-26 18:38:21
  */
 
 import { proxy } from 'valtio'
@@ -16,7 +16,9 @@ export const appStore = proxy({
     ? localStorage.getItem('defaultSelectedKeys') ?? '/home'
     : '/home',
 
-  defaultOpenKeys: [],
+  defaultOpenKeys: isClient
+    ? localStorage.getItem('defaultOpenKeys') ?? []
+    : [],
   setCollapsed: (collapsed) => {
     appStore.collapsed = collapsed
   },
@@ -34,5 +36,10 @@ export const appStore = proxy({
 if (isClient) {
   subscribeKey(appStore, 'defaultSelectedKeys', (key) => {
     localStorage.setItem('defaultSelectedKeys', key)
+  })
+
+  subscribeKey(appStore, 'defaultOpenKeys', (key) => {
+    console.log('TCL: key', key)
+    localStorage.setItem('defaultOpenKeys', key)
   })
 }

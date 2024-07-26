@@ -1,6 +1,6 @@
 /*
  * @Date: 2024-07-23 11:59:13
- * @LastEditTime: 2024-07-26 16:31:36
+ * @LastEditTime: 2024-07-26 18:16:30
  */
 'use client'
 import { Inter } from 'next/font/google'
@@ -28,7 +28,6 @@ export default function RootLayout({ children }) {
           <AntdRegistry>
             {isLoginPage ? children : <DefaultLayout>{children}</DefaultLayout>}
           </AntdRegistry>
-          /
         </ConfigProvider>
       </body>
     </html>
