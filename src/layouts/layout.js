@@ -1,73 +1,42 @@
-import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons'
-import { Button, Layout, Menu, theme } from 'antd'
+/*
+ * @Date: 2024-07-25 10:50:53
+ * @LastEditTime: 2024-07-26 15:08:44
+ */
+
+'use client'
+import dynamic from 'next/dynamic'
+import { Layout } from 'antd'
 import { useSnapshot } from 'valtio'
-import { appStore } from '@/store'
-import { useCustomRouter } from '@/hooks'
-import DefaultContent from './content'
-import DefaultHeader from './header'
-const { Header, Sider, Content } = Layout
+import { userStore } from '@/store'
+import { useEffect } from 'react'
+
+const { Content } = Layout
+
+const DefaultAside = dynamic(() => import('./aside'), {
+  ssr: false
+})
+
+const DefaultContent = dynamic(() => import('./content'), {
+  ssr: false
+})
+
+const DefaultHeader = dynamic(() => import('./header'), {
+  ssr: false
+})
 
 const DefaultLayout = ({ children }) => {
-  const {
-    collapsed,
-    routes,
-    defaultSelectedKeys,
-    setDefaultSelectedKeys,
-    setCollapsed
-  } = useSnapshot(appStore)
+  const { getUserInfo } = useSnapshot(userStore)
 
-  const {
-    token: { colorBgContainer, borderRadiusLG }
-  } = theme.useToken()
-  const { useRouter } = useCustomRouter()
-  const router = useRouter()
-  const clickMenu = (e) => {
-    router.push(e.key)
-    setDefaultSelectedKeys(e.key)
-  }
+  useEffect(() => {
+    getUserInfo()
+  }, [getUserInfo])
 
   return (
     <Layout className='w-[100vw] h-[100vh]'>
-      <Sider trigger={null} collapsible collapsed={collapsed} theme='light'>
-        <div className='demo-logo-vertical' />
-        <Menu
-          theme='light'
-          mode='inline'
-          selectedKeys={[defaultSelectedKeys]}
-          items={routes}
-          onClick={clickMenu}
-        />
-      </Sider>
+      <DefaultAside />
       <Layout>
         <DefaultHeader />
-        {/* <Header
-          style={{
-            padding: 0,
-            background: colorBgContainer
-          }}
-        >
-          <Button
-            type='text'
-            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-            onClick={() => setCollapsed(!collapsed)}
-            style={{
-              fontSize: '16px',
-              width: 64,
-              height: 64
-            }}
-          />
-        </Header> */}
-        <Content
-          style={{
-            margin: '24px 16px',
-            padding: 24,
-            minHeight: 280,
-            background: colorBgContainer,
-            borderRadius: borderRadiusLG
-          }}
-        >
-          <DefaultContent>{children}</DefaultContent>
-        </Content>
+        <DefaultContent>{children}</DefaultContent>
       </Layout>
     </Layout>
   )

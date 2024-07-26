@@ -1,21 +1,22 @@
 /*
  * @Author: mr-huanglin
- * @LastEditTime: 2024-07-25 11:19:06
+ * @LastEditTime: 2024-07-26 15:18:52
  */
 
 import { proxy } from 'valtio'
 import { subscribeKey } from 'valtio/utils'
+import { useHttp } from '@/hooks'
 
 const isClient = typeof window !== 'undefined'
 
 export const userStore = proxy({
   info: {},
-  token: isClient ? localStorage.getItem('token') || '' : '',
+  async getUserInfo() {
+    const { result } = await useHttp('/restApi/member/info')
+    userStore.info = result
+    console.log('TCL: getUserInfo ->  userStore.info', userStore.info)
+  },
   setToken: (token) => {
-    userStore.token = token
+    localStorage.setItem('token', token)
   }
-})
-
-subscribeKey(userStore, 'token', (value) => {
-  localStorage.setItem('token', userStore.token)
 })

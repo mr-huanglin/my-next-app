@@ -1,11 +1,12 @@
 // 'use client'
 import { useState } from 'react'
-
-import { appStore } from '@/store'
+import { appStore, userStore } from '@/store'
 import { useSnapshot } from 'valtio'
 import { useCustomRouter } from '@/hooks'
+import { filterImage } from '@/filter'
 const Header = () => {
   const { collapsed, setCollapsed } = useSnapshot(appStore)
+  const { info } = useSnapshot(userStore)
 
   const [currentActive, setCurrentActive] = useState(1)
   const { useRouter } = useCustomRouter()
@@ -37,10 +38,14 @@ const Header = () => {
             className='btn btn-ghost btn-circle avatar'
           >
             <div className='w-10 rounded-full'>
-              <img
-                alt='Tailwind CSS Navbar component'
-                src='https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg'
-              />
+              {info.head ? (
+                <img
+                  alt='Tailwind CSS Navbar component'
+                  src={filterImage(info.head)}
+                />
+              ) : (
+                ''
+              )}
             </div>
           </div>
           <ul

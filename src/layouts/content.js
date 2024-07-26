@@ -1,25 +1,29 @@
 /*
  * @Author: mr-huang
- * @LastEditTime: 2024-07-25 14:20:46
+ * @LastEditTime: 2024-07-26 14:40:57
  */
 'use client'
 
+import { Layout, theme } from 'antd'
 import { useEffect } from 'react'
 import { appStore, userStore } from '@/store'
 import { useSnapshot } from 'valtio'
 import { usePathname, useRouter } from 'next/navigation'
 
-const Content = ({ children }) => {
+const { Content } = Layout
+
+const ContentLayout = ({ children }) => {
   const pathName = usePathname()
   const router = useRouter()
-  const { token: userToken } = useSnapshot(userStore)
-
   const { setDefaultSelectedKeys } = useSnapshot(appStore)
+  const {
+    token: { colorBgContainer, borderRadiusLG }
+  } = theme.useToken()
 
   const checkUser = () => {
     if (pathName === '/') {
       return true
-    } else if (!userToken) {
+    } else if (!localStorage.getItem('token')) {
       router.push('/')
     }
   }
@@ -28,7 +32,19 @@ const Content = ({ children }) => {
     checkUser()
     setDefaultSelectedKeys(pathName)
   }, [pathName])
-  return <div>{children}</div>
+  return (
+    <Content
+      style={{
+        margin: '24px 16px',
+        padding: 24,
+        minHeight: 280,
+        background: colorBgContainer,
+        borderRadius: borderRadiusLG
+      }}
+    >
+      {children}
+    </Content>
+  )
 }
 
-export default Content
+export default ContentLayout

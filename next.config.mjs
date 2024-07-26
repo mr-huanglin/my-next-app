@@ -1,6 +1,6 @@
 /*
  * @Author: huanglin
- * @LastEditTime: 2024-07-25 09:51:39
+ * @LastEditTime: 2024-07-26 10:38:48
  */
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -10,6 +10,11 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: '**.thecatapi.com',
+        port: ''
+      },
+      {
+        protocol: 'https',
+        hostname: '**.bailvwuyou.oss-cn-shenzhen.aliyuncs.com',
         port: ''
       }
     ]

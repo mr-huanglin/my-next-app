@@ -1,12 +1,15 @@
 /*
  * @Author: huanglin
- * @LastEditTime: 2024-07-25 15:57:56
+ * @LastEditTime: 2024-07-26 09:58:45
  */
 'use client'
 import { useState, useEffect } from 'react'
 import './index.scss'
 import { Button } from 'antd'
 import { useCustomRouter, useHttp } from '@/hooks'
+import { userStore } from '@/store'
+import { useSnapshot } from 'valtio'
+// import {u}
 
 // 动态引入 static/image 文件夹下的所有图片
 const importAll = (r) => r.keys().map(r)
@@ -16,6 +19,9 @@ const images = importAll(
 export default function LoginPage() {
   const { useRouter } = useCustomRouter()
   const [currentImage, setCurrentImage] = useState(0)
+  const [loginName, setLoginName] = useState('')
+  const [loginPwd, setLoginPwd] = useState('')
+  const { setToken } = useSnapshot(userStore)
   const router = useRouter()
   useEffect(() => {
     const interval = setInterval(() => {
@@ -26,11 +32,16 @@ export default function LoginPage() {
 
   const handleLogin = async () => {
     const params = {
-      loginName: '187781513401',
-      loginPwd: '123456'
+      loginName,
+      loginPwd
     }
-    const res = await useHttp('/restApi/member/auth/login', params)
-    console.log('TCL: handleLogin -> res', res)
+    console.log('TCL: handleLogin -> params', params)
+
+    const {
+      result: { token }
+    } = await useHttp('/restApi/member/auth/login', params)
+    setToken(token)
+    router.push('/home')
   }
   return (
     <div
@@ -50,6 +61,8 @@ export default function LoginPage() {
                 placeholder='请输入账号'
                 autoComplete='username'
                 className='input input-bordered w-full max-w-xs'
+                value={loginName}
+                onChange={(e) => setLoginName(e.target.value)}
               />
             </div>
 
@@ -62,6 +75,8 @@ export default function LoginPage() {
                 placeholder='请输入密码'
                 autoComplete='current-password'
                 className='input input-bordered w-full max-w-xs'
+                value={loginPwd}
+                onChange={(e) => setLoginPwd(e.target.value)}
               />
             </div>
 

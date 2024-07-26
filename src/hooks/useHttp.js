@@ -1,3 +1,7 @@
+/*
+ * @Date: 2024-07-25 14:22:47
+ * @LastEditTime: 2024-07-26 10:19:06
+ */
 import { addRequestToQueue } from '@/utils/requestQueue' // 确保路径正确
 
 const baseRequest = process.env.NEXT_PUBLIC_REQUEST_URL
@@ -9,7 +13,8 @@ export const useHttp = async (url, data, option = {}) => {
         method: 'POST',
         cache: 'no-cache',
         headers: {
-          'Content-Type': 'application/json;charset=utf-8'
+          'Content-Type': 'application/json;charset=utf-8',
+          Authorization: `Bearer ${localStorage.getItem('token')}`
         },
         ...option
       }

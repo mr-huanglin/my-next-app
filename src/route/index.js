@@ -1,6 +1,6 @@
 /*
  * @Date: 2024-07-25 14:06:00
- * @LastEditTime: 2024-07-25 14:08:11
+ * @LastEditTime: 2024-07-26 12:05:24
  */
 import {
   MenuFoldOutlined,
@@ -13,17 +13,21 @@ const routes = [
   {
     key: '/home',
     icon: <UserOutlined />,
-    label: 'nav 1'
+    label: '工作台'
   },
   {
-    key: '/home2',
+    key: '/workOrder',
     icon: <VideoCameraOutlined />,
-    label: 'nav 2'
+    label: '工单管理',
+    children: [
+      { key: '/caseManagement', label: '案件管理' },
+      { key: '/documentWorkOrderManagement', label: '文书工单管理' }
+    ]
   },
   {
-    key: '/3',
+    key: '/chat',
     icon: <UploadOutlined />,
-    label: 'nav 3'
+    label: '聊天信息'
   }
 ]
 export default routes
