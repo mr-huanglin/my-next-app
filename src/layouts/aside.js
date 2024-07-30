@@ -1,6 +1,6 @@
 /*
  * @Date: 2024-07-26 14:25:32
- * @LastEditTime: 2024-07-26 18:35:58
+ * @LastEditTime: 2024-07-27 15:53:43
  */
 
 import { Layout, Menu } from 'antd'
@@ -18,8 +18,6 @@ const Aside = () => {
     defaultOpenKeys,
     setDefaultOpenKeys
   } = useSnapshot(appStore)
-
-  console.log('TCL: Aside -> defaultOpenKeys', defaultOpenKeys)
 
   const router = useRouter()
 

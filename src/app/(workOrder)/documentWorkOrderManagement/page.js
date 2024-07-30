@@ -1,16 +1,21 @@
 /*
  * @Date: 2024-07-26 11:39:14
- * @LastEditTime: 2024-07-26 18:28:15
+ * @LastEditTime: 2024-07-30 17:20:20
  */
 
 'use client'
 import ComSearch from '@/components/com-search'
 import ComTable from '@/components/com-table'
-import { useHttp } from '@/hooks'
-import { useCallback, useEffect } from 'react'
-import { Button } from 'antd'
+import { useCallback, useState } from 'react'
+import { Button, Card } from 'antd'
+import { useRouter } from 'next/navigation'
 
 const DocumentWorkOrderManagement = () => {
+  const [searchParams, setSearchParams] = useState({})
+  const router = useRouter()
+  const orderDetail = (val) => {
+    router.push(`/documentWorkOrderManagement/${val.id}`)
+  }
   const searchColumns = [
     {
       label: '工单编号',
@@ -84,22 +89,36 @@ const DocumentWorkOrderManagement = () => {
       dataIndex: 'operation',
       key: 'operation',
       render: (text, record) => {
-        return <Button type='primary'>详情</Button>
+        return (
+          <Button
+            type='primary'
+            onClick={() => {
+              orderDetail(record)
+            }}
+          >
+            详情
+          </Button>
+        )
       }
     }
   ]
   const onsubmit = useCallback((params) => {
-    console.log('6666', params)
+    setSearchParams(params)
   }, [])
   return (
     <div>
-      <ComSearch searchColumns={searchColumns} onSubmit={onsubmit} />
+      <Card>
+        <ComSearch searchColumns={searchColumns} onSubmit={onsubmit} />
+      </Card>
 
-      <div className='mt-[20px]'>
-        <ComTable
-          columns={columns}
-          api='/restApi/workOrder/customerWorkOrderList'
-        />
+      <div className='mt-[15px]'>
+        <Card>
+          <ComTable
+            columns={columns}
+            searchParams={searchParams}
+            api='/restApi/workOrder/customerWorkOrderList'
+          />
+        </Card>
       </div>
     </div>
   )

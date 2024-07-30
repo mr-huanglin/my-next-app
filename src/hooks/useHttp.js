@@ -1,6 +1,6 @@
 /*
  * @Date: 2024-07-25 14:22:47
- * @LastEditTime: 2024-07-26 10:19:06
+ * @LastEditTime: 2024-07-30 18:04:27
  */
 import { addRequestToQueue } from '@/utils/requestQueue' // 确保路径正确
 
@@ -14,7 +14,9 @@ export const useHttp = async (url, data, option = {}) => {
         cache: 'no-cache',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
-          Authorization: `Bearer ${localStorage.getItem('token')}`
+          Authorization: localStorage.getItem('token')
+            ? `Bearer ${localStorage.getItem('token')}`
+            : ''
         },
         ...option
       }

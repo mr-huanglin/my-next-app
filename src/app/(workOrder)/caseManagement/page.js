@@ -1,13 +1,13 @@
 /*
  * @Date: 2024-07-26 11:39:14
- * @LastEditTime: 2024-07-26 17:22:35
+ * @LastEditTime: 2024-07-30 16:40:35
  */
 
 'use client'
 import ComSearch from '@/components/com-search'
 import ComTable from '@/components/com-table'
-import { useHttp } from '@/hooks'
-import { useCallback, useEffect } from 'react'
+import { useCallback } from 'react'
+import { Card } from 'antd'
 
 const CaseManagement = () => {
   const searchColumns = [
@@ -65,8 +65,14 @@ const CaseManagement = () => {
   }, [])
   return (
     <div>
-      <ComSearch searchColumns={searchColumns} onSubmit={onsubmit} />
-      <ComTable columns={columns} api='/restApi/case/list' />
+      <Card>
+        <ComSearch searchColumns={searchColumns} onSubmit={onsubmit} />
+      </Card>
+      <div className='mt-[15px]'>
+        <Card>
+          <ComTable columns={columns} api='/restApi/case/list' />
+        </Card>
+      </div>
     </div>
   )
 }

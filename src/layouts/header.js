@@ -5,8 +5,13 @@ import { useSnapshot } from 'valtio'
 import { useCustomRouter } from '@/hooks'
 import { filterImage } from '@/filter'
 const Header = () => {
-  const { collapsed, setCollapsed } = useSnapshot(appStore)
-  const { info } = useSnapshot(userStore)
+  const {
+    collapsed,
+    setCollapsed,
+    setDefaultSelectedKeys,
+    setDefaultOpenKeys
+  } = useSnapshot(appStore)
+  const { info, setToken } = useSnapshot(userStore)
 
   const [currentActive, setCurrentActive] = useState(1)
   const { useRouter } = useCustomRouter()
@@ -16,6 +21,9 @@ const Header = () => {
   }
 
   const handleLogOut = () => {
+    setToken('')
+    setDefaultSelectedKeys('/home')
+    setDefaultOpenKeys(null)
     router.push('/login')
   }
   return (
