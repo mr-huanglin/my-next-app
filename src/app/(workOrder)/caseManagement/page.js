@@ -6,8 +6,8 @@
 'use client'
 import ComSearch from '@/components/com-search'
 import ComTable from '@/components/com-table'
-import { useCallback } from 'react'
-import { Card } from 'antd'
+import { useCallback, useRef } from 'react'
+import { Button, Card } from 'antd'
 
 const CaseManagement = () => {
   const searchColumns = [
@@ -59,10 +59,15 @@ const CaseManagement = () => {
       key: 'id'
     }
   ]
+  const tableRef = useRef()
 
   const onsubmit = useCallback((params) => {
     console.log('6666', params)
   }, [])
+
+  const getList = () => {
+    tableRef.current.init()
+  }
   return (
     <div>
       <Card>
@@ -70,7 +75,8 @@ const CaseManagement = () => {
       </Card>
       <div className='mt-[15px]'>
         <Card>
-          <ComTable columns={columns} api='/restApi/case/list' />
+          <Button onClick={getList}>测试</Button>
+          <ComTable ref={tableRef} columns={columns} api='/restApi/case/list' />
         </Card>
       </div>
     </div>

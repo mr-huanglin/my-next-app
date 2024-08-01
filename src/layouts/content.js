@@ -1,6 +1,6 @@
 /*
  * @Author: mr-huang
- * @LastEditTime: 2024-07-30 15:39:54
+ * @LastEditTime: 2024-07-31 11:33:09
  */
 'use client'
 
@@ -15,7 +15,6 @@ const { Content } = Layout
 const ContentLayout = ({ children }) => {
   const pathName = usePathname()
   const router = useRouter()
-  const { setDefaultSelectedKeys } = useSnapshot(appStore)
   const {
     token: { colorBgContainer, borderRadiusLG }
   } = theme.useToken()
@@ -30,7 +29,6 @@ const ContentLayout = ({ children }) => {
 
   useEffect(() => {
     checkUser()
-    setDefaultSelectedKeys(pathName)
   }, [pathName])
   return (
     <Content

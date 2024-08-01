@@ -1,5 +1,10 @@
+/*
+ * @Date: 2024-07-23 11:59:13
+ * @LastEditTime: 2024-07-31 11:54:38
+ */
 'use client'
 import ComImage from '@/components/com-image'
+import { Card } from 'antd'
 import { useEffect, useState } from 'react'
 export default function Home() {
   const [url, setUrl] = useState('')
@@ -23,6 +28,10 @@ export default function Home() {
   }, [])
 
   return (
-    <div>{url && <ComImage src={url} width={300} height={500} priority />}</div>
+    <div className='h-[100%]'>
+      <Card>
+        {url && <ComImage src={url} width={300} height={500} priority />}
+      </Card>
+    </div>
   )
 }

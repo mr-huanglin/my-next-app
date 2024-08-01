@@ -1,33 +1,35 @@
 /*
  * @Date: 2024-07-26 14:25:32
- * @LastEditTime: 2024-07-27 15:53:43
+ * @LastEditTime: 2024-07-31 11:53:13
  */
-
+import { useEffect, useState } from 'react'
 import { Layout, Menu } from 'antd'
 import { appStore } from '@/store'
 import { useSnapshot } from 'valtio'
-import { useRouter } from 'next/navigation'
+import { useRouter, usePathname } from 'next/navigation'
 const { Sider } = Layout
 
 const Aside = () => {
-  const {
-    collapsed,
-    routes,
-    defaultSelectedKeys,
-    setDefaultSelectedKeys,
-    defaultOpenKeys,
-    setDefaultOpenKeys
-  } = useSnapshot(appStore)
-
+  const { collapsed, routes } = useSnapshot(appStore)
+  const pathname = usePathname()
   const router = useRouter()
+  const [openKeys, setOpenKeys] = useState([])
 
   const clickMenu = (e) => {
-    setDefaultSelectedKeys([e.key])
     router.push(e.key)
   }
+
   const onOpenChange = (keys) => {
-    setDefaultOpenKeys(keys)
+    setOpenKeys(keys)
+    localStorage.setItem('openKeys', JSON.stringify(keys))
   }
+
+  useEffect(() => {
+    if (localStorage.getItem('openKeys')) {
+      const currentKeys = JSON.parse(localStorage.getItem('openKeys'))
+      setOpenKeys(() => currentKeys)
+    }
+  }, [])
 
   return (
     <Sider
@@ -41,8 +43,8 @@ const Aside = () => {
       <Menu
         theme='light'
         mode='inline'
-        defaultSelectedKeys={defaultSelectedKeys}
-        defaultOpenKeys={defaultOpenKeys}
+        defaultSelectedKeys={pathname}
+        openKeys={openKeys}
         items={routes}
         onClick={clickMenu}
         onOpenChange={onOpenChange}
