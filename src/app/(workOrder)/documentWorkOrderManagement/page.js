@@ -9,6 +9,7 @@ import ComTable from '@/components/com-table'
 import { useCallback, useState } from 'react'
 import { Button, Card } from 'antd'
 import { useRouter } from 'next/navigation'
+import ComTabGroup from '@/components/com-tab-group'
 
 const DocumentWorkOrderManagement = () => {
   const [searchParams, setSearchParams] = useState({})
@@ -102,8 +103,19 @@ const DocumentWorkOrderManagement = () => {
       }
     }
   ]
+  const groupOptions = [
+    { label: '全部', value: '1' },
+    { label: '已委托', value: '2' },
+    { label: '服务中', value: '3' },
+    { label: '已完成', value: '4' }
+  ]
+  const [groupValue, setGroupValue] = useState('1')
   const onsubmit = useCallback((params) => {
     setSearchParams(params)
+  }, [])
+
+  const groupSubmit = useCallback((params) => {
+    setGroupValue(params)
   }, [])
   return (
     <div>
@@ -113,6 +125,12 @@ const DocumentWorkOrderManagement = () => {
 
       <div className='mt-[15px]'>
         <Card>
+          {/* <ComTabGroup
+            defaultValue={groupValue}
+            options={groupOptions}
+            customClass='mb-[15px]'
+            onSubmit={groupSubmit}
+          /> */}
           <ComTable
             columns={columns}
             searchParams={searchParams}
